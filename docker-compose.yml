@@ -7,6 +7,7 @@ services:
     container_name: todo-app
     working_dir: /app
     volumes:
-      - .:/app
+      - ./client:/app
     ports:
       - 3000:3000
+    tty: true  # コンテナ内で対話的にコマンド実行を可能にする

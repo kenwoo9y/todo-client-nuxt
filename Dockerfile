@@ -2,4 +2,5 @@ FROM node:22-alpine3.18
 
 WORKDIR /app
 
-RUN apk add --update
+# 開発サーバーをデフォルトで起動しない
+CMD ["sh"]
