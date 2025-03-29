@@ -9,7 +9,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ['**/dist/**'],
+    ignores: ['**/node_modules/**', '**/.*/**'],
   },
   ...compat.config({
     extends: ['eslint:recommended'],
