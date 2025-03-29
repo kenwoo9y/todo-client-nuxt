@@ -16,6 +16,18 @@ logs: ## Tail docker compose logs
 ps: ## Check container status
 	docker compose ps
 
+lint-check: ## Execute lint check
+	cd client && docker compose run todo-app npm run lint:check
+
+lint-fix: ## Execute lint fix
+	cd client && docker compose run todo-app npm run lint:fix
+
+format-check: ## Execute format check
+	cd client && docker compose run todo-app npm run format:check
+
+format-fix: ## Execute format fix
+	cd client && docker compose run todo-app npm run format:fix
+
 help: ## Show options
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
