@@ -4,25 +4,23 @@ import eslintPluginVue from 'eslint-plugin-vue';
 import js from '@eslint/js';
 
 const compat = new FlatCompat({
-    recommendedConfig: js.configs.recommended
+  recommendedConfig: js.configs.recommended,
 });
 
 export default [
-    {
-        ignores: ['**/dist/**']
+  {
+    ignores: ['**/dist/**'],
+  },
+  ...compat.config({
+    extends: ['eslint:recommended'],
+  }),
+  eslintConfigPrettier,
+  {
+    plugins: {
+      vue: eslintPluginVue,
     },
-    ...compat.config({
-        extends: [
-            'eslint:recommended',
-        ]
-    }),
-    eslintConfigPrettier,
-    {
-        plugins: {
-            vue: eslintPluginVue
-        },
-        rules: {
-            'vue/multi-word-component-names': 'off',
-        },
+    rules: {
+      'vue/multi-word-component-names': 'off',
     },
+  },
 ];
