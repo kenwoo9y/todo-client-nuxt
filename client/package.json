@@ -7,7 +7,11 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint:check": "eslint . '**/*.{js,ts,vue}'",
+    "lint:fix": "eslint . --fix '**/*.{js,ts,vue}'",
+    "format:check": "prettier -c '**/*.{js,ts,vue}'",
+    "format:fix": "prettier -w '**/*.{js,ts,vue}'"
   },
   "dependencies": {
     "nuxt": "^3.16.1",
@@ -16,6 +20,13 @@
     "vuetify": "^3.7.19"
   },
   "devDependencies": {
-    "@mdi/js": "^7.4.47"
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.23.0",
+    "@mdi/js": "^7.4.47",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-vue": "^10.0.0",
+    "prettier": "^3.5.3"
   }
 }
