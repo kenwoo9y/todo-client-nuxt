@@ -1,6 +1,5 @@
 <template>
-    <v-container>
-        <p>Home</p>
-    </v-container>
+  <v-container>
+    <p>Home</p>
+  </v-container>
 </template>
-
