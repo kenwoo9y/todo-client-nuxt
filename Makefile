@@ -16,6 +16,12 @@ logs: ## Tail docker compose logs
 ps: ## Check container status
 	docker compose ps
 
+test: ## Execute test
+	cd client && docker compose run todo-app npm run test
+
+test-coverage: ## Execute test coverage
+	cd client && docker compose run todo-app npm run test:coverage
+
 lint-check: ## Execute lint check
 	cd client && docker compose run todo-app npm run lint:check
 
