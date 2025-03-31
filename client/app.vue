@@ -1,11 +1,9 @@
 <template>
   <v-app>
     <Header />
-    <v-container>
-      <v-btn color="primary">
-        Vuetify
-      </v-btn>
-    </v-container>
+    <v-main>
+      <NuxtPage />
+    </v-main>
     <Footer />
   </v-app>
 </template>

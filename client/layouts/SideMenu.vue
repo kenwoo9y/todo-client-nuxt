@@ -25,7 +25,7 @@
     default: false,
   });
   const items = ref([
-    { title: 'Home', icon: 'mdiHome', link: { name: 'home' } },
-    { title: 'About', icon: 'mdiForum', link: { name: 'about' } },
+    { title: 'Home', icon: 'mdiHome', link: '/' },
+    { title: 'About', icon: 'mdiForum', link: '/about' }
   ]);
 </script>

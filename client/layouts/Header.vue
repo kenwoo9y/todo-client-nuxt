@@ -7,7 +7,7 @@
   
       <v-app-bar-title>
         <router-link
-          :to="{ name: 'home' }"
+          to="/"
           style="text-decoration: none; color: inherit"
         >
           ToDo App
