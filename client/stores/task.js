@@ -1,6 +1,9 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { useFetch } from '#app';
+import { env } from '@/config/env';
+
+const apiUrl = env.apiUrl;
 
 export const useTaskStore = defineStore('task', () => {
   // state
@@ -8,12 +11,12 @@ export const useTaskStore = defineStore('task', () => {
 
   // getters
   async function fetchTasks() {
-    const { data } = await useFetch('/api/tasks');
+    const { data } = await useFetch(`${apiUrl}/tasks`);
     tasks.value = data.value;
   }
 
   async function fetchTask(id) {
-    const { data: fetchedTask } = await useFetch(`/api/tasks/${id}`);
+    const { data: fetchedTask } = await useFetch(`${apiUrl}/tasks/${id}`);
 
     const index = tasks.value.findIndex((task) => task.id === id);
     if (index !== -1) {
@@ -34,7 +37,7 @@ export const useTaskStore = defineStore('task', () => {
       status: task.status,
       owner_id: task.owner_id,
     };
-    const { data } = await useFetch('/api/tasks', {
+    const { data } = await useFetch(`${apiUrl}/tasks`, {
       method: 'POST',
       body: taskPayload,
     });
@@ -42,7 +45,7 @@ export const useTaskStore = defineStore('task', () => {
   }
 
   async function updateTask(taskUpdate) {
-    const { data } = await useFetch(`/api/tasks/${taskUpdate.id}`, {
+    const { data } = await useFetch(`${apiUrl}/tasks/${taskUpdate.id}`, {
       method: 'PATCH',
       body: {
         title: taskUpdate.title,
@@ -60,7 +63,7 @@ export const useTaskStore = defineStore('task', () => {
   }
 
   async function deleteTask(id) {
-    await useFetch(`/api/tasks/${id}`, {
+    await useFetch(`${apiUrl}/tasks/${id}`, {
       method: 'DELETE',
     });
     tasks.value = tasks.value.filter((task) => task.id !== id);
