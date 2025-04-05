@@ -11,9 +11,9 @@ export const useTaskStore = defineStore('task', () => {
   async function fetchTasks() {
     loading.value = true;
     try {
-      const response = await $fetch(`${apiUrl}/tasks`);
+      const response = await globalThis.$fetch(`${apiUrl}/tasks`);
       tasks.value = response || [];
-    } catch (error) {
+    } catch {
       tasks.value = [];
     } finally {
       loading.value = false;
@@ -22,7 +22,7 @@ export const useTaskStore = defineStore('task', () => {
 
   async function fetchTask(id) {
     try {
-      const response = await $fetch(`${apiUrl}/tasks/${id}`);
+      const response = await globalThis.$fetch(`${apiUrl}/tasks/${id}`);
       const index = tasks.value.findIndex((task) => task.id === id);
       if (index !== -1) {
         tasks.value[index] = response;
@@ -30,7 +30,7 @@ export const useTaskStore = defineStore('task', () => {
         tasks.value.push(response);
       }
       return response;
-    } catch (error) {
+    } catch {
       return null;
     }
   }
@@ -43,7 +43,7 @@ export const useTaskStore = defineStore('task', () => {
       status: task.status,
       owner_id: task.owner_id,
     };
-    const response = await $fetch(`${apiUrl}/tasks`, {
+    const response = await globalThis.$fetch(`${apiUrl}/tasks`, {
       method: 'POST',
       body: taskPayload,
     });
@@ -51,16 +51,19 @@ export const useTaskStore = defineStore('task', () => {
   }
 
   async function updateTask(taskUpdate) {
-    const response = await $fetch(`${apiUrl}/tasks/${taskUpdate.id}`, {
-      method: 'PATCH',
-      body: {
-        title: taskUpdate.title,
-        description: taskUpdate.description,
-        due_date: taskUpdate.due_date,
-        status: taskUpdate.status,
-        owner_id: taskUpdate.owner_id,
+    const response = await globalThis.$fetch(
+      `${apiUrl}/tasks/${taskUpdate.id}`,
+      {
+        method: 'PATCH',
+        body: {
+          title: taskUpdate.title,
+          description: taskUpdate.description,
+          due_date: taskUpdate.due_date,
+          status: taskUpdate.status,
+          owner_id: taskUpdate.owner_id,
+        },
       },
-    });
+    );
 
     const index = tasks.value.findIndex((task) => task.id === taskUpdate.id);
     if (index !== -1) {
@@ -69,7 +72,7 @@ export const useTaskStore = defineStore('task', () => {
   }
 
   async function deleteTask(id) {
-    await $fetch(`${apiUrl}/tasks/${id}`, {
+    await globalThis.$fetch(`${apiUrl}/tasks/${id}`, {
       method: 'DELETE',
     });
     tasks.value = tasks.value.filter((task) => task.id !== id);
