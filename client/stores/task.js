@@ -1,38 +1,40 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import { useFetch } from '#app';
 import { env } from '@/config/env';
 
 const apiUrl = env.apiUrl;
 
 export const useTaskStore = defineStore('task', () => {
-  // state
   const tasks = ref([]);
+  const loading = ref(false);
 
-  // getters
   async function fetchTasks() {
-    const { data } = await useFetch(`${apiUrl}/tasks`);
-    if (data.value) {
-      tasks.value = data.value;
-    } else {
+    loading.value = true;
+    try {
+      const response = await $fetch(`${apiUrl}/tasks`);
+      tasks.value = response || [];
+    } catch (error) {
       tasks.value = [];
+    } finally {
+      loading.value = false;
     }
   }
 
   async function fetchTask(id) {
-    const { data: fetchedTask } = await useFetch(`${apiUrl}/tasks/${id}`);
-
-    const index = tasks.value.findIndex((task) => task.id === id);
-    if (index !== -1) {
-      tasks.value[index] = fetchedTask.value;
-    } else {
-      tasks.value.push(fetchedTask.value);
+    try {
+      const response = await $fetch(`${apiUrl}/tasks/${id}`);
+      const index = tasks.value.findIndex((task) => task.id === id);
+      if (index !== -1) {
+        tasks.value[index] = response;
+      } else {
+        tasks.value.push(response);
+      }
+      return response;
+    } catch (error) {
+      return null;
     }
-
-    return fetchedTask.value;
   }
 
-  // actions
   async function createTask(task) {
     const taskPayload = {
       title: task.title,
@@ -41,15 +43,15 @@ export const useTaskStore = defineStore('task', () => {
       status: task.status,
       owner_id: task.owner_id,
     };
-    const { data } = await useFetch(`${apiUrl}/tasks`, {
+    const response = await $fetch(`${apiUrl}/tasks`, {
       method: 'POST',
       body: taskPayload,
     });
-    tasks.value.push(data.value);
+    tasks.value.push(response);
   }
 
   async function updateTask(taskUpdate) {
-    const { data } = await useFetch(`${apiUrl}/tasks/${taskUpdate.id}`, {
+    const response = await $fetch(`${apiUrl}/tasks/${taskUpdate.id}`, {
       method: 'PATCH',
       body: {
         title: taskUpdate.title,
@@ -62,12 +64,12 @@ export const useTaskStore = defineStore('task', () => {
 
     const index = tasks.value.findIndex((task) => task.id === taskUpdate.id);
     if (index !== -1) {
-      tasks.value[index] = data.value;
+      tasks.value[index] = response;
     }
   }
 
   async function deleteTask(id) {
-    await useFetch(`${apiUrl}/tasks/${id}`, {
+    await $fetch(`${apiUrl}/tasks/${id}`, {
       method: 'DELETE',
     });
     tasks.value = tasks.value.filter((task) => task.id !== id);
@@ -75,6 +77,7 @@ export const useTaskStore = defineStore('task', () => {
 
   return {
     tasks,
+    loading,
     fetchTasks,
     fetchTask,
     createTask,
