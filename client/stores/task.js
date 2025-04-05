@@ -12,7 +12,11 @@ export const useTaskStore = defineStore('task', () => {
   // getters
   async function fetchTasks() {
     const { data } = await useFetch(`${apiUrl}/tasks`);
-    tasks.value = data.value;
+    if (data.value) {
+      tasks.value = data.value;
+    } else {
+      tasks.value = [];
+    }
   }
 
   async function fetchTask(id) {
