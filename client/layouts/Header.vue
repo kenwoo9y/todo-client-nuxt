@@ -13,7 +13,7 @@
 
     <template #append>
       <v-btn class="text-capitalize">
-        <MdiIcon icon="mdiLogin" />
+        <MdiIcon preserveAspectRatio="xMidYMid meet" icon="mdiLogin" />
         &thinsp;Sign Out
       </v-btn>
     </template>

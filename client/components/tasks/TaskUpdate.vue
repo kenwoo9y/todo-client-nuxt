@@ -1,5 +1,11 @@
 <template>
-  <MdiIcon icon="mdiPencil" small class="mr-2" @click.stop="openDialog" />
+  <MdiIcon
+    preserveAspectRatio="xMidYMid meet"
+    icon="mdiPencil"
+    small
+    class="mr-2"
+    @click.stop="openDialog"
+  />
 
   <v-dialog v-model="dialog" max-width="800">
     <v-sheet>

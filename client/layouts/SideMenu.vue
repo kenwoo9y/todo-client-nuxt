@@ -8,7 +8,7 @@
         @click="model = false"
       >
         <template #prepend>
-          <MdiIcon :icon="item.icon" />
+          <MdiIcon preserveAspectRatio="xMidYMid meet" :icon="item.icon" />
         </template>
 
         <v-list-item-title>{{ item.title }}</v-list-item-title>
