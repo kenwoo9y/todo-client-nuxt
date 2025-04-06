@@ -38,7 +38,6 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useRouter } from '#app';
 import { useTaskStore } from '@/stores/task';
 
 const props = defineProps({
@@ -50,7 +49,6 @@ const props = defineProps({
 
 const dialog = ref(false);
 
-const router = useRouter();
 const taskStore = useTaskStore();
 
 const openDialog = () => {
@@ -60,7 +58,7 @@ const openDialog = () => {
 const handleDelete = async () => {
   await taskStore.deleteTask(props.task.id);
   dialog.value = false;
-  router.push({ path: '/' });
+  await navigateTo('/');
 };
 
 const handleCancel = () => {

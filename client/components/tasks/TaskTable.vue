@@ -33,10 +33,8 @@ import TaskCreate from '@/components/tasks/TaskCreate.vue';
 import TaskUpdate from '@/components/tasks/TaskUpdate.vue';
 import TaskDelete from '@/components/tasks/TaskDelete.vue';
 import { ref, onMounted } from 'vue';
-import { useRouter } from '#app';
 import { useTaskStore } from '@/stores/task';
 
-const router = useRouter();
 const taskStore = useTaskStore();
 
 const itemsPerPage = ref(5);
@@ -62,7 +60,7 @@ onMounted(() => {
   taskStore.fetchTasks();
 });
 
-const handleRowClick = (event, row) => {
-  router.push({ path: `/detail/${row.item.id}` });
+const handleRowClick = async (event, row) => {
+  await navigateTo(`/detail/${row.item.id}`);
 };
 </script>

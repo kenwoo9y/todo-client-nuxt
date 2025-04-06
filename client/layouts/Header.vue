@@ -6,9 +6,9 @@
     </template>
 
     <v-app-bar-title>
-      <router-link to="/" style="text-decoration: none; color: inherit">
+      <NuxtLink to="/" style="text-decoration: none; color: inherit">
         ToDo App
-      </router-link>
+      </NuxtLink>
     </v-app-bar-title>
 
     <template #append>
