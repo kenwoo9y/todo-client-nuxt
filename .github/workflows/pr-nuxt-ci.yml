@@ -1,0 +1,40 @@
+name: Nuxt CI Workflow
+
+on:
+  pull_request:
+    branches: main
+
+defaults:
+  run:
+    working-directory: ./client  # 作業ディレクトリを指定
+
+jobs:
+  nuxt-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      # コードのチェックアウト
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Node.jsのセットアップ
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'  # 使用するNode.jsのバージョンを指定
+
+      # 依存関係のインストール
+      - name: Install dependencies
+        run: npm install
+
+      # Prettierの実行
+      - name: Run Prettier
+        run: npm run format:check
+
+      # ESLintの実行
+      - name: Run ESLint
+        run: npm run lint:check
+
+      # Vitestによるテストとカバレッジ
+      - name: Run Vitest with coverage
+        run: npm run test:coverage
