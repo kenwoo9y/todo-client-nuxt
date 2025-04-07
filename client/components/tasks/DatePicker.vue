@@ -19,26 +19,37 @@ import { ref, computed, watch } from 'vue';
 
 const props = defineProps({
   modelValue: {
-    type: String,
-    default: '',
+    type: [String, Date],
+    default: null,
   },
 });
 const emit = defineEmits(['update:modelValue']);
 
 const showDatePicker = ref(false);
-const localSelectedDate = ref(null);
+const selectedDate = ref(null);
+
+// 日本時間に合わせて日付を調整する関数
+const adjustToJST = (date) => {
+  if (!date) return null;
+  const d = new Date(date);
+  // 日本時間に合わせるために9時間を加算
+  d.setHours(d.getHours() + 9);
+  return d.toISOString().split('T')[0];
+};
 
 // 初期値をpropsから設定
-localSelectedDate.value = props.modelValue;
+if (props.modelValue) {
+  selectedDate.value = adjustToJST(props.modelValue);
+}
 
 const formattedDate = computed(() => {
-  return localSelectedDate.value
-    ? new Date(localSelectedDate.value).toLocaleDateString()
-    : '';
+  if (!selectedDate.value) return '';
+  const date = new Date(selectedDate.value);
+  return date.toLocaleDateString();
 });
 
 const updateDate = (date) => {
-  localSelectedDate.value = date;
+  selectedDate.value = date;
   emit('update:modelValue', date);
   showDatePicker.value = false;
 };
@@ -46,7 +57,7 @@ const updateDate = (date) => {
 watch(
   () => props.modelValue,
   (newValue) => {
-    localSelectedDate.value = newValue;
+    selectedDate.value = adjustToJST(newValue);
   },
 );
 </script>
