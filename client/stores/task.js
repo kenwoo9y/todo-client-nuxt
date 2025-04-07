@@ -1,10 +1,10 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import { env } from '@/config/env';
-
-const apiUrl = env.apiUrl;
+import { useRuntimeConfig } from '#imports';
 
 export const useTaskStore = defineStore('task', () => {
+  const config = useRuntimeConfig();
+  const apiUrl = config.public.apiUrl;
   const tasks = ref([]);
   const loading = ref(false);
 

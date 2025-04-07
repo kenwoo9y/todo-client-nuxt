@@ -25,3 +25,6 @@ logs
 
 # Coverage
 coverage
+
+# Local env files
+.env
