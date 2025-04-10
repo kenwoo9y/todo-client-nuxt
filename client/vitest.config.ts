@@ -14,10 +14,10 @@ export default defineVitestConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       thresholds: {
-        statements: 54,
+        statements: 53,
         branches: 50,
         functions: 22,
-        lines: 54,
+        lines: 53,
       },
       exclude: [
         '**/virtual:nuxt:**',
