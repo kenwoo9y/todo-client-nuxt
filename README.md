@@ -45,8 +45,8 @@ This is a ToDo Web Client built with Nuxt.js, offering a seamless and intuitive 
 ### Initial Setup
 1. Clone this repository:
     ```
-    $ git clone https://github.com/kenwoo9y/todo-client-vue.git
-    $ cd todo-client-vue
+    $ git clone https://github.com/kenwoo9y/todo-client-nuxt.git
+    $ cd todo-client-nuxt
     ```
 
 2. Build the required Docker images:
