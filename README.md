@@ -23,12 +23,12 @@ This is a ToDo Web Client built with Nuxt.js, offering a seamless and intuitive 
 ### Frontend
 - [Nuxt.js](https://nuxt.com/) v3.16.1 - Vue.js-based full-stack framework
 - [Vue.js](https://vuejs.org/) v3.5.13 - Progressive JavaScript framework
-- [Vuetify](https://vuetifyjs.com/) - Material Design component framework
+- [Vuetify](https://vuetifyjs.com/) v3 (via vuetify-nuxt-module v0.18.4) - Material Design component framework
 - [Pinia](https://pinia.vuejs.org/) v3.0.1 - State management library for Vue.js
 
 ### Development Environment
-- [Node.js](https://nodejs.org/) - JavaScript runtime environment
-- [npm](https://www.npmjs.com/) - Node.js package manager
+- [Node.js](https://nodejs.org/) v22 - JavaScript runtime environment
+- [npm](https://www.npmjs.com/) v10.2.4 - Node.js package manager
 - [Docker](https://www.docker.com/) - Containerization platform
 - [Docker Compose](https://docs.docker.com/compose/) - Tool for defining and running multi-container Docker applications
 
