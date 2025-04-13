@@ -29,8 +29,7 @@ This is a ToDo Web Client built with Nuxt.js, offering a seamless and intuitive 
 ### Development Environment
 - [Node.js](https://nodejs.org/) v22 - JavaScript runtime environment
 - [npm](https://www.npmjs.com/) v10.2.4 - Node.js package manager
-- [Docker](https://www.docker.com/) - Containerization platform
-- [Docker Compose](https://docs.docker.com/compose/) - Tool for defining and running multi-container Docker applications
+- [Docker](https://www.docker.com/) with Compose v3.9 - Containerization platform for building and managing applications
 
 ### Testing & Quality Assurance
 - [Vitest](https://vitest.dev/) v3.0.9 - Vite-native unit testing framework
