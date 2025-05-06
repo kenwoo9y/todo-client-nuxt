@@ -2,8 +2,10 @@ export function formatDateTime(originalDateTime) {
   // originalDateTime が null、undefined、または空文字の場合は空文字を返す
   if (!originalDateTime) return '';
 
-  // 入力された文字列をDateオブジェクトに変換
-  const date = new Date(originalDateTime + 'Z');
+  // すでにZが付いているかチェック
+  const date = new Date(
+    originalDateTime.endsWith('Z') ? originalDateTime : originalDateTime + 'Z',
+  );
 
   // 日本時間に変換
   const options = {
