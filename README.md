@@ -5,7 +5,6 @@ This is a ToDo Web Client built with Nuxt.js, offering a seamless and intuitive 
 ## Tech Stack
 ![Nuxtjs](https://img.shields.io/badge/Nuxt-00DC82.svg?style=for-the-badge&logo=Nuxt&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)
 ![Vuetify](https://img.shields.io/badge/Vuetify-1867C0?style=for-the-badge&logo=vuetify&logoColor=AEDDFF)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
@@ -18,7 +17,6 @@ This is a ToDo Web Client built with Nuxt.js, offering a seamless and intuitive 
 
 ### Programming Languages
 - [JavaScript](https://developer.mozilla.org/en/docs/Web/JavaScript) - Primary development language
-- [TypeScript](https://www.typescriptlang.org/) - For type definitions
 
 ### Frontend
 - [Nuxt.js](https://nuxt.com/) v3.16.1 - Vue.js-based full-stack framework
