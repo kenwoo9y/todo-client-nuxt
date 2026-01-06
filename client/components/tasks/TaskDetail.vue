@@ -1,12 +1,12 @@
 <template>
   <v-container>
-    <!-- タスクがnullの場合はローディング表示 -->
+    <!-- Show loading if task is null -->
     <div v-if="!task">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
       <p>読み込み中...</p>
     </div>
 
-    <!-- タスクが存在する場合のみ表示 -->
+    <!-- Display only if task exists -->
     <template v-else>
       <div class="d-flex justify-end">
         <TaskUpdate :task="task" />
@@ -70,17 +70,17 @@ const headerTitles = ref([
 
 const task = ref(null);
 
-// タスクの初期読み込み
+// Initial task loading
 const loadTask = async () => {
-  const taskId = parseInt(route.params.id); // 文字列から数値に変換
+  const taskId = parseInt(route.params.id); // Convert string to number
   if (!taskId) return;
 
-  // タスクストアから該当するタスクを検索
+  // Search for task in task store
   const foundTask = taskStore.tasks.find((t) => t.id === taskId);
   if (foundTask) {
-    task.value = { ...foundTask }; // オブジェクトをコピー
+    task.value = { ...foundTask }; // Copy object
   } else {
-    // タスクが見つからない場合は、APIから直接取得を試みる
+    // If task not found, try fetching directly from API
     try {
       await taskStore.fetchTask(taskId);
       task.value = taskStore.tasks.find((t) => t.id === taskId) || null;
@@ -91,9 +91,9 @@ const loadTask = async () => {
   }
 };
 
-// タスクストアの変更を監視
+// Watch task store changes
 watch(
-  () => [...taskStore.tasks], // 配列の中身の変更を確実に検知
+  () => [...taskStore.tasks], // Ensure detection of array content changes
   (newTasks) => {
     if (!task.value?.id) return;
     const updatedTask = newTasks.find((t) => t.id === task.value.id);
@@ -101,19 +101,19 @@ watch(
       task.value = { ...updatedTask };
     }
   },
-  { deep: true }, // ネストされたオブジェクトの変更も検知
+  { deep: true }, // Detect nested object changes
 );
 
-// ルートパラメータが変更された時にタスクを再読み込み
+// Reload task when route params change
 watch(
   () => route.params.id,
   async () => {
     await loadTask();
   },
-  { immediate: true }, // コンポーネントの初期化時にも実行
+  { immediate: true }, // Execute during component initialization
 );
 
-// コンポーネントのマウント時にタスクを読み込む
+// Load task on component mount
 onMounted(async () => {
   await loadTask();
 });

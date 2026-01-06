@@ -38,7 +38,7 @@ const openDialog = () => {
 };
 
 const handleSubmit = (formData) => {
-  // 日付をISO形式に変換
+  // Convert date to ISO format
   const formattedData = {
     ...formData,
     due_date: formatDateForAPI(formData.due_date),
