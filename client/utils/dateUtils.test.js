@@ -5,7 +5,7 @@ describe('dateUtils', () => {
   describe('formatDateTime', () => {
     it('正しい日時フォーマットに変換される', () => {
       const input = '2024-03-15T10:30:00';
-      const expected = '2024-03-15 19:30'; // 日本時間（UTC+9）
+      const expected = '2024-03-15 19:30'; // Japan time (UTC+9)
       expect(formatDateTime(input)).toBe(expected);
     });
 

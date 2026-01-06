@@ -28,16 +28,16 @@ const emit = defineEmits(['update:modelValue']);
 const showDatePicker = ref(false);
 const selectedDate = ref(null);
 
-// 日本時間に合わせて日付を調整する関数
+// Function to adjust date to JST
 const adjustToJST = (date) => {
   if (!date) return null;
   const d = new Date(date);
-  // 日本時間に合わせるために9時間を加算
+  // Add 9 hours to adjust to JST
   d.setHours(d.getHours() + 9);
   return d.toISOString().split('T')[0];
 };
 
-// 初期値をpropsから設定
+// Set initial value from props
 if (props.modelValue) {
   selectedDate.value = adjustToJST(props.modelValue);
 }
