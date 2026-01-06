@@ -99,3 +99,66 @@ This is a ToDo Web Client built with Nuxt.js, offering a seamless and intuitive 
     ```
     $ make format-fix
     ```
+
+---
+## セットアップ
+### 初期セットアップ
+1. リポジトリをクローン:
+    ```
+    $ git clone https://github.com/kenwoo9y/todo-client-nuxt.git
+    $ cd todo-client-nuxt
+    ```
+
+2. 必要なDockerイメージをビルド:
+    ```
+    $ make build-local
+    ```
+
+3. コンテナを起動:
+    ```
+    $ make up
+    ```
+
+## 使用方法
+### コンテナ管理
+- コンテナのステータスを確認:
+    ```
+    $ make ps
+    ```
+- コンテナのログを表示:
+    ```
+    $ make logs
+    ```
+- コンテナを停止:
+    ```
+    $ make down
+    ```
+
+## 開発
+### テストの実行
+- テストを実行:
+    ```
+    $ make test
+    ```
+- カバレッジ付きでテストを実行:
+    ```
+    $ make test-coverage
+    ```
+
+### コード品質チェック
+- リントチェック:
+    ```
+    $ make lint-check
+    ```
+- リント修正を適用:
+    ```
+    $ make lint-fix
+    ```
+- コードフォーマットをチェック:
+    ```
+    $ make format-check
+    ```
+- コードフォーマットを適用:
+    ```
+    $ make format-fix
+    ```
